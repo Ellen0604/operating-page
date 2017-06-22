@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta content="text/html; charset=utf-8">
+		<meta charset="utf-8">
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="format-detection" content="telephone=no"/>
+		<title>编辑</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" />
+		<link href="css/ck_operating_pages.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+	</head>
+	<body>
+		<section class="matche-introduce-edit-menu">
+			<ul>
+				<li class="matche-introduce-edit-menu-title">赛事标题</li>
+				<li class="matche-introduce-edit-menu-value">
+					<textarea id="matchTitle">网吧高级战队赛事</textarea>
+				</li>
+			</ul>
+			<ul>
+				<li class="create-matche-menu-title">报名截止时间:（时间精确到分钟）</li>
+				<li class="create-matche-menu-value">
+					<input type="datetime-local" id="deadlineTime"></input>
+				</li>
+			</ul>
+			<ul>
+				<li class="create-matche-menu-title">比赛时间:（时间精确到分钟）</li>
+				<li class="create-matche-menu-value">
+					<input type="datetime-local" id="startTime"></input>
+				</li>
+			</ul>
+			<ul>
+				<li class="matche-introduce-edit-menu-title">奖项</li>
+				<li class="matche-introduce-edit-menu-value"><textarea id="matchAward">第一名: 黄金万两 第二名: 皮肤10套 第三名: 可乐一箱</textarea></li>
+			</ul>
+			<ul>
+				<li class="matche-introduce-edit-menu-title">赛事介绍</li>
+				<li class="matche-introduce-edit-menu-value">
+					<textarea class="matche-introduce-textarea" id="matcheIntroduce">1、如果你是六盘水地区高手，可录用为核心队员，代表战队参加各类正式比赛；提供福利：免费训练场地；全套装备；&#13;&#10;2、如果你是六盘水地区普通玩家，不论实力如何均欢迎加入，有专业老队员带队训练，每周举办队内赛提供丰富奖品，助你迅速成长。
+					</textarea>
+				</li>
+			</ul>
+
+			<div class="matche-introduce-edit-btn">
+				<div class="matche-introduce-edit-abolished"><input type="button" value="删除"></div>
+				<div class="matche-introduce-edit-sure"><input type="button" value="完成"></div>
+			</div>
+		</section>
+	</body>
+	<script type="text/javascript">
+		var matchesId=0;
+
+		var initMatchEdit=function(){
+			CF.showLoading(1);
+			var pdata={};
+			if(_authKey_) pdata.auth_key=_authKey_;
+			function getData(){
+				CF.get(_ApiRoot_+"matches/"+matchesId,pdata,function(result){
+			        console.log(result);
+			        if(result.code==200){
+			        	if(result.data){
+			        		fillData(result.data);
+			        	}
+			        }
+			    });
+			};
+			function fillData(D){
+				$("#matchTitle").text(D.title);
+				$("#matchAward").text(D.award);
+				$("#matcheIntroduce").text(D.content);
+			};
+			getData();
+
+			$(".matche-introduce-edit-sure").click(function(){
+				CF.call(_ApiRoot_+"matches/"+matchesId,pdata,function(result){
+			        console.log(result);
+			        
+			    },"patch");
+			})
+		};
+		$(function(){
+			matchesId=CF.queryString("mid");
+			initMatchEdit();
+		});
+	</script>
+</html>

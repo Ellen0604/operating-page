@@ -1,0 +1,247 @@
+@charset "utf-8";
+/*----------- rem 15 font-size --------------
+ * ┌────┬────┬────┬────┬────┬────┬────┬────┬────┬────┬────┬────┬────┬────┬────┬────┬────┐
+ * │  9 │ 10 │ 11 │ 12 │ 13 │ 14 │ 15 │ 16 │ 17 │ 18 │ 19 │ 20 │ 21 │ 22 │ 23 │ 24 │ 25 │
+ * ├────┼────┼────┼────┼────┼────┼────┼────┼────┼────┼────┼────┼────┼────┼────┼────┼────┤
+ * │ 0.6│0.66│0.73│ 0.8│0.86│0.93│  1 │1.06│1.13│ 1.2│1.26│1.33│ 1.4│1.46│1.53│ 1.6│1.66│
+ * └────┴────┴────┴────┴────┴────┴────┴────┴────┴────┴────┴────┴────┴────┴────┴────┴────┘
+ ------------------------------------------*/
+/*------------------------------公用 */
+.bottom-space{border-bottom:0.66rem solid #eeeeee;}
+.bottom-block{clear:both;height:2.666rem;display:block;}
+/*------------------------------导航 */
+.info-nav{height:3rem;width:100%;background:#FFF;position:fixed;top:0;z-index:100;}
+.info-nav ul{position:relative;overflow:hidden;}
+.info-nav ul li{width:33%;height:3rem;float:left;text-align:center;position:relative;outline:none;-webkit-tap-highlight-color:transparent;}
+.info-nav ul li a{display:inline-block;color:#999;font-size:0.93rem;font-weight:bold;line-height:2.466rem;height:2.466rem;position:relative;padding:0.266rem 0 0 0;-webkit-tap-highlight-color:transparent;}
+.info-nav ul li.cur a{color:#000;}
+.info-nav ul li.cur a:after{content:"";display:block;background:#ffd100;height:0.266rem;width:130%;margin-left:-15%;margin-top:-0.266rem;position:relative;border-radius:0.266rem;-webkit-border-radius:0.266rem;}
+.info-nav-block{height:3rem;display:block;}
+
+/*------------------------------搜索 */
+.info-search{height:3rem;width:100%;background:#FFF;position:fixed;top:0;z-index:98;}
+.info-nav ~ .info-search{margin-top:3rem;border-top:1px solid #eaeaea;}
+.info-search-left{padding-left:0.93rem;height:3rem;width:83%;float:left;line-height:3rem;}
+.info-search-input{height:2rem;width:100%;line-height:2rem;margin:0.5rem 0;text-indent:2.5rem;background:#f2f2f2;position:relative;border-radius:1rem;-webkit-border-radius:1rem;color:#999;font-size:0.866rem;background-image:url(../imgs/ico_search.png);background-repeat:no-repeat;background-position:1rem center;background-size:1rem auto;}
+.info-search-filter{height:3rem;width:10%;float:left;background-image:url(../imgs/ico_filter.png);background-repeat:no-repeat;background-position:center center;background-size:1rem auto;}
+.info-search-filter.on{background-image:url(../imgs/ico_filter2.png);}
+.info-search-block{height:3.1rem;display:block;}
+.info-search-filtermemu{position:absolute;display:none;right:0.4rem;top:2.8rem;background:#FFF;padding:0 0.8rem;border-radius:4px;-webkit-border-radius:4px;border:1px solid #eaeaea;z-index:99;}
+.info-search-filtermemu ul{font-size:0;}
+.info-search-filtermemu li{line-height:1.66rem;height:1.66rem;font-size:0.86rem;padding:0.5rem 1.6rem;color:#000;text-align:center;border-bottom:1px solid #eaeaea;}
+.info-search-filtermemu li:last-child{border-bottom:none;}
+.info-search-filtermemu li.cur{color:#ffd100;}
+.info-search-filtermemu .arrow{position:absolute;top:-8px;right:1rem;width:0px;height:0px;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:8px solid #eaeaea;}
+.info-search-filtermemu .arrow:after{content:'';display:block;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:7px solid #FFFFFF;position:absolute;left:-6px;top:1px;}
+
+.info-search-input form{font-size:0;}
+.info-search-input input{width:85%;font-size:0.866rem;line-height:1.4rem;margin:0.3rem 0 0 0;background:transparent;border:none;outline:none;-webkit-tap-highlight-color:transparent;}
+.info-search-cancel{height:3rem;width:10%;float:left;font-size:0.86rem;line-height:3rem;text-align:center;}
+/*------------------------------浮动头像 */
+.member-floater{position:fixed;z-index:150;bottom:5%;right:5%;width:2.66rem;height:2.66rem;}
+.member-floater-face{width:2.13rem;height:2.13rem;font-size:0.8rem;font-weight:bold;line-height:2.13rem;text-align:center;border:0.27rem solid #FFD100;border-radius:50%;-webkit-border-radius:50%;background-color:#FFF;background-repeat:no-repeat;background-position:center center;background-size:100% 100%;}
+
+/*------------------------------资讯 */
+.news-banner{overflow:hidden;}
+.news-banner-pic{/*height:0;padding-bottom:41.6%;*/min-height:12.5rem;font-size:0;position:relative;background-color:#eee;background-repeat:no-repeat;background-position:center center;background-size:100% 100%;}
+.news-banner-pic>img{width:100%;}
+.news-list{padding:0 0.93rem;}
+.news-list-li{border-bottom:1px solid #eaeaea;overflow:hidden;padding:0.93rem 0;outline:none;-webkit-tap-highlight-color:transparent;}
+.news-list-li-txt{float:left;width:67%;height:100%;position:relative;}
+.news-list-li-txt>div{font-size:0.933rem;line-height:1.3rem;height:3.8rem;overflow:hidden;text-overflow:ellipsis;color:#000;}
+.news-list-li-txt>i{position:relative;bottom:0;font-size:0.733rem;line-height:0.8rem;padding-top:0.4rem;color:#999;}
+.news-list-li-pic{float:right;width:31.25%;height:0;padding-bottom:21.25%;position:relative;background-color:#eee;background-repeat:no-repeat;background-position:center center;background-size:100% 100%;}
+
+/*------------------------------资讯详情 */
+.news-detail{padding:0 0.93rem;}
+.news-detail-title{font-size:1.066rem;line-height:1.6rem;font-weight:bold;color:#000;margin:2rem auto 0.6rem auto;text-align:center;word-break:break-all;word-wrap:break-word;}
+.news-detail-time{font-size:0.733rem;line-height:1rem;color:#666;text-align:center;margin-bottom:1.2rem;}
+.news-detail-pic{width:100%;margin:0.8rem auto;}
+.news-detail-content{font-size:0.933rem;line-height:1.333rem;color:#000;}
+
+/*------------------------------短信 */
+.sms-page input{border:none;outline:none;background:transparent;vertical-align:top;color:#000;}
+.sms-page input::-webkit-input-placeholder{font-size:0.8rem;color:#999;}
+.sms-row{margin:0 auto;height:3rem;position:relative;border-bottom:1px solid #e2e2e2;}
+.sms-row>div{height:3rem;line-height:3rem;text-align:center;position:relative;}
+.sms-row-tel{padding:0 0.66rem;}
+.sms-row-tel input , .sms-row-vcode input{height:1.6rem;padding:0.66rem 0;width:100%;line-height:1.6rem;font-size:1rem;color:#000;}
+.sms-row-vcode{margin-right:7.33rem;padding:0 0.66rem;}
+.sms-row-get{float:right;width:7.33rem;height:3rem;}
+.sms-row-get input{width:5.333rem;height:1.733rem;line-height:1.733rem;margin:0.6rem 1rem;font-size:0.8rem;color:#000;text-align:center;background:transparent;border:1px solid #000;box-sizing:content-box;border-radius:0.933rem;-webkit-border-radius:0.933rem;}
+.sms-row-get input:disabled{border:1px solid #666;color:#666;}
+.sms-submit{margin-top:1.8rem;}
+.sms-submit input{background:#000;color:#FFF;font-size:0.933rem;width:100%;line-height:2.66rem;height:2.66rem;border-radius:1.33rem;-webkit-border-radius:1.33rem;}
+.sms-submit input:disabled{background:#000;color:#DDD;box-sizing:content-box;}
+.sms-txt{font-size:0.9rem;line-height:1.466rem;padding:1.5rem;color:#666666;text-align:center;border-bottom:1px solid #e2e2e2;}
+/*------------------------------联赛 */
+.league-list{padding:0 0.93rem;}
+.league-list img{margin-bottom:0.66rem;}
+.league-list p{font-size:0.933rem;line-height:1.6rem;overflow:hidden;color:#000;}
+
+/*------------------------------战事 */
+.matches-list{padding:0 0.93rem;}
+.matches-list li{overflow:hidden;padding-bottom:1rem;}
+.matches-list img{margin-bottom:0.66rem;}
+.matches-list .matches-list-title{font-size:0.933rem;line-height:1.266rem;margin-right:6rem;font-weight:bold;}
+.matches-list .matches-list-time{display:inline-block;min-width:3rem;padding:0 0.3rem;height:1.2rem;line-height:1.2rem;float:right;font-size:0.733rem;color:#000;background:#ffd100;border-radius:0.6rem;-webkit-border-radius:0.6rem;text-align:center;}
+.matches-list .matches-list-prize{clear:both;font-size:0.733rem;line-height:1.066rem;overflow:hidden;color:#666;padding:0.266rem 0 0.266rem 1.4rem;background-image:url(../imgs/ico_prize.png);background-repeat:no-repeat;background-position:0 0.466rem;background-size:0.933rem auto;}
+.matches-list .matches-list-location{clear:both;float:right;display:inline-block;font-size:0.733rem;line-height:1.666rem;height:1.666rem;overflow:hidden;color:#999;padding-left:0.9rem;background-image:url(../imgs/ico_location.png);background-repeat:no-repeat;background-position:0 0.45rem;background-size:0.566rem auto;}
+
+/*------------------------------战事详情nav */
+.matches-nav{height:3rem;width:100%;background:#FFF;position:fixed;top:0;z-index:100;border-bottom:1px solid #cccccc;}
+.matches-nav ul{position:relative;overflow:hidden;}
+.matches-nav ul li{width:25%;height:3rem;float:left;text-align:center;position:relative;outline:none;-webkit-tap-highlight-color:transparent;}
+.matches-nav ul li a{display:inline-block;color:#999;font-size:0.93rem;font-weight:bold;line-height:2.466rem;height:2.466rem;position:relative;padding:0.266rem 0 0 0;-webkit-tap-highlight-color:transparent;}
+.matches-nav ul li.cur a{color:#000;}
+.matches-nav ul li.cur a:after{content:"";display:block;background:#ffd100;height:0.266rem;width:100%;margin-left:0%;margin-top:-0.266rem;position:relative;border-radius:0.266rem;-webkit-border-radius:0.266rem;}
+.matches-nav-block{height:3rem;display:block;}
+
+/*------------------------------战事介绍*/
+.matches-top{height:4.266rem;padding:0 0.93rem;overflow:hidden;}
+.matches-top-logo{width:2.466rem;height:2.466rem;margin:0.9rem 0.666rem 0 0;float:left;}
+.matches-top-logo img{width:2.466rem;height:2.466rem;}
+.matches-top-title{margin:0.9rem 5rem 0 3.134rem;}
+.matches-top-title span{font-size:1rem;color:#333;line-height:1.4rem;}
+.matches-top-title i{font-size:0.73rem;color:#999;line-height:1rem;}
+.matches-top-status{width:5rem;float:right;margin:0.9rem 0 0 0;text-align:right;}
+.matches-top-status span{display:inline-block;border:2px solid #000;font-size:0.73rem;color:#000;text-align:center;padding:0.2rem 0.4rem;line-height:0.8rem;border-radius:0.8rem;-webkit-border-radius:0.8rem;}
+
+.matches-podium{height:9.8rem;position:relative;overflow:hidden;}
+.matches-podium-list{width:20rem;height:100%;margin:0 auto;background-image:url(../imgs/podium.png);background-repeat:no-repeat;background-position:center bottom;background-size:100% auto;}
+.matches-podium-list ul{width:100%;height:100%;position:relative;overflow:hidden;}
+.matches-podium-list li{width:33.3%;float:left;text-align:center;}
+.matches-podium-list-face{display:inline-block;background:#CCC;width:2.466rem;height:2.466rem;border-radius:50%;-webkit-border-radius:50%;line-height:2.466rem;color:#fff;font-size:2rem;overflow:hidden;}
+.matches-podium-list li p{font-size:0.666rem;color:#666;}
+.matches-podium-list li:nth-child(1){padding-top:3rem;}
+.matches-podium-list li:nth-child(2){padding-top:1.8rem;}
+.matches-podium-list li:nth-child(3){padding-top:3.66rem;}
+
+.matches-row{padding:0.666rem 0.93rem;overflow:hidden;}
+.matches-row-title{display:inline-block;float:left;padding-left:1.466rem;font-size:0.933rem;line-height:1.333rem;color:#000;font-weight:bold;background-repeat:no-repeat;background-position:left center;background-size:auto 1rem;}
+.matches-row-value{display:inline-block;float:left;padding-left:0.666rem;font-size:0.866rem;line-height:1.333rem;color:#000;}
+.matches-row-content{clear:both;padding:0.8rem 0;display:block;font-size:0.866rem;line-height:1.4rem;color:#666;}
+.matches-initiator{background-image:url(../imgs/arrow_more.png);background-repeat:no-repeat;background-position:97% center;background-size:auto 0.766rem;}
+.matches-initiator .matches-row-title{background-image:url(../imgs/ico_matches1.png);}
+
+.matches-prize{overflow:hidden;}
+.matches-prize .matches-row-title{background-image:url(../imgs/ico_matches2.png);}
+.matches-prize .matches-row-content{border-bottom:1px solid #e0e0e0;}
+
+.matches-intro{overflow:hidden;}
+.matches-intro .matches-row-title{background-image:url(../imgs/ico_matches3.png);}
+.matches-btn-signup{position:fixed;z-index:97;bottom:0;width:100%;font-size:0.933rem;line-height:1.666rem;color:#fff;background:#000;text-align:center;padding:0.5rem 0;}
+.matches-btn-signup.lock{background:#999;}
+/*------------------------------战事赛程*/
+.matches-schedule{padding:0.66rem 0.93rem;overflow:hidden;}
+.matches-schedule-date{overflow:hidden;padding:0.66rem 0;}
+.matches-schedule-date-time{float:left;font-size:0.8rem;line-height:1rem;height:1rem;color:#333;padding-left:0.666rem;position:relative;}
+.matches-schedule-date-time:before{content:"";display:block;position:absolute;left:0;width:0.4rem;height:100%;background:#ffd100;border-radius:0.2rem;-webkit-border-radius:0.2rem;}
+.matches-schedule-date-round{float:right;font-size:0.8rem;line-height:1rem;color:#333;}
+.matches-schedule-matches{overflow:hidden;padding:0.66rem 0;}
+.matches-schedule-matches li{display:block;position:relative;overflow:hidden;}
+.matches-schedule-matches-time{float:left;width:15%;font-size:0.73rem;line-height:1rem;color:#333;margin-top:2rem;}
+.matches-schedule-matches-teams{float:right;width:84%;border:1px solid #eeeeee;box-sizing:border-box;margin-bottom:1rem;}
+.matches-schedule-matches-teams ul{font-size:0;display:block;padding:0.33rem 0.66rem;}
+.matches-schedule-matches-teams li{clear:both;display:block;padding:0.33rem 0;}
+.matches-schedule-matches-status{position:absolute;right:4rem;top:2rem;font-size:0.6rem;line-height:0.6rem;height:0.6rem;padding:0.2rem 0.4rem;border-radius:0.5rem;-webkit-border-radius:0.5rem;text-align:center;display:inline-block;}
+.matches-schedule-matches-status.ing{background:#ffd100;color:#000;}
+.matches-schedule-matches-status.nev{background:#cccccc;color:#fff;}
+
+/*------------------------------战事队伍*/
+.matches-teams{border-top:0.66rem solid #eeeeee;}
+.matches-teams li{padding:0.666rem 0.93rem;overflow:hidden;border-bottom:1px solid #eeeeee;}
+.matches-teams-logo{width:1.733rem;height:1.733rem;float:left;display:inline-block;background-repeat:no-repeat;background-position:center center;background-size:100% 100%;background-color:#eee;border-radius:50%;-webkit-border-radius:50%;}
+.matches-teams-name{display:inline-block;padding-left:0.8rem;font-size:0.866rem;line-height:1.733rem;color:#000;}
+.matches-teams-score{display:inline-block;float:right;font-size:0.866rem;line-height:1.733rem;color:#000;}
+
+/*------------------------------战事讨论*/
+.matches-discuss{overflow:hidden;height:auto;}
+.matches-discuss.lock-height{height:100%;}
+.matches-discuss li{padding:0.666rem 0.93rem;border-bottom:0.66rem solid #eeeeee;}
+.matches-discuss-head{overflow:hidden;}
+.matches-discuss-face{width:2.433rem;height:2.433rem;float:left;display:inline-block;background-repeat:no-repeat;background-position:center center;background-size:100% 100%;background-color:#888;border-radius:50%;-webkit-border-radius:50%;}
+.matches-discuss-user{height:3rem;float:left;margin-left:0.6rem;}
+.matches-discuss-user>span{display:inline-block;float:left;font-size:0.933rem;line-height:1.4rem;color:#000;}
+.matches-discuss-user>div{display:inline-block;float:left;overflow:hidden;margin:0.266rem 0 0 0.33rem;}
+.matches-discuss-user>div>i{display:inline-block;float:left;font-size:0.6rem;line-height:0.9rem;height:0.933rem;box-sizing:border-box;}
+.matches-discuss-user>div>i:nth-child(1){color:#ffd100;background:#000;padding:0 0.2rem;border-radius:0.2rem 0 0 0.2rem;}
+.matches-discuss-user>div>i:nth-child(2){color:#000;background:#ffd100;border-top:1px solid #000;border-bottom:1px solid #000;padding:0 0 0 0.2rem;padding-right:0.66rem;background-image:url(../imgs/flag_tail.png);background-repeat:no-repeat;background-position:right center;background-size:auto 100%;}
+.matches-discuss-user>p{clear:both;font-size:0.733rem;line-height:1rem;color:#999;}
+.matches-discuss-like{float:right;height:0.933rem;padding:0.74rem 0;line-height:0.933rem;font-size:0.733rem;color:#000;padding-left:1.2rem;background-image:url(../imgs/ico_like.png);background-repeat:no-repeat;background-position:left center;background-size:auto 0.933rem;}
+.matches-discuss-like.liked{background-image:url(../imgs/ico_liked.png);}
+.matches-discuss-pic img{width:100%;}
+.matches-discuss-content{font-size:0.866rem;line-height:1.4rem;color:#333;}
+
+.matches-discuss-publish{position:fixed;z-index:97;bottom:0;width:100%;font-size:0;height:3rem;background:#fff;border-top:1px solid #ccc;}
+.matches-discuss-publish-addpic{width:3rem;height:3rem;float:left;background-image:url(../imgs/ico_uppic.png);background-repeat:no-repeat;background-position:center center;background-size:auto 1.733rem;}
+.matches-discuss-publish-addpic.haspic{background-size:auto 100%;}
+.matches-discuss-publish-input{margin-left:3.1rem;overflow:hidden;position:relative;}
+.matches-discuss-publish-input input{width:92%;height:2rem;padding:0.2rem 0.5rem;line-height:1.6rem;font-size:1rem;margin:0.5rem;color:#000;background:#f2f2f2;border:1px solid #ccc;border-radius:0.333rem;-webkit-border-radius:0.333rem;outline:none;box-sizing:border-box;}
+
+.matches-discuss-mask{position:fixed;z-index:90;top:0;width:100%;height:100%;background:rgba(0,0,0,0);display:none;}
+/*------------------------------报名*/
+.signup-page{background:#f2f2f2;}
+.signup-matches{position:relative;background:#FFF;}
+.signup-matches>div{position:relative;padding:2rem;text-align:center;border-bottom:1px solid #eaeaea;}
+.signup-matches>div>img{width:auto;height:3.66rem;}
+.signup-matches>div>div{font-size:1rem;line-height:1.466rem;color:#000;}
+.signup-matches>div>p{padding:0.666rem 2.5rem;font-size:1rem;line-height:1.466rem;color:#000;font-weight:bold;}
+.signup-form{position:relative;background:#FFF;}
+.signup-form li{height:3rem;padding:0 1rem;border-bottom:1px solid #eaeaea;}
+.signup-form li input{height:2rem;padding:0.5rem 0;font-size:0.833rem;color:#000;width:65%;outline:none;-webkit-tap-highlight-color:transparent;}
+.signup-form-select{float:right;display:inline-block;font-size:0.733rem;line-height:1rem;padding:0.42rem 0.66rem;margin:0.58rem 0;color:#000;background:#ffd100;text-align:center;border-radius:0.92rem;-webkit-border-radius:0.92rem;}
+.signup-tips{font-size:0.8rem;line-height:1.166rem;color:#999;padding:1rem;}
+.signup-submit{height:2.66rem;margin:1rem;background:#000;color:#FFF;font-size:1rem;line-height:2.66rem;text-align:center;border-radius:1.33rem;-webkit-border-radius:1.33rem;}
+.signup-select-layer{position:fixed;z-index:150;top:0;width:100%;height:100%;background:#f2f2f2;}
+
+/*------------------------------报名选择战队*/
+.signup-selectteam{position:relative;padding:0 1rem;overflow:hidden;font-size:0;}
+.signup-selectteam ul{display:block;}
+.signup-selectteam li{margin:0 0 0.666rem 0;padding:0.666rem;background-color:#FFF;border-radius:0.3rem;-webkit-border-radius:0.3rem;overflow:hidden;}
+.signup-selectteam li .signup-selectteam-logo{width:2.433rem;height:2.433rem;float:left;display:inline-block;background-repeat:no-repeat;background-position:center center;background-size:100% 100%;background-color:#eee;border-radius:50%;-webkit-border-radius:50%;}
+.signup-selectteam li .signup-selectteam-name{display:inline-block;padding-left:0.8rem;font-size:0.866rem;line-height:2.433rem;color:#000;font-weight:bold;}
+.signup-selectteam li.selected{background-image:url(../imgs/selected.png);background-repeat:no-repeat;background-position:95% center;background-size:auto 1.433rem;}
+
+/*------------------------------我的*/
+.mine-page{background:#f2f2f2;}
+.mine-top{height:10.66rem;background-image:url(../imgs/my_bg.jpg);background-repeat:no-repeat;background-position:center center;background-size:100% 100%;overflow:hidden;}
+.mine-top-face{width:3.66rem;height:3.66rem;margin:2.4rem auto 0 auto;background-color:#999;background-repeat:no-repeat;background-position:center center;background-size:100% 100%;border-radius:50%;-webkit-border-radius:50%;}
+.mine-top-name{font-size:0.933rem;line-height:2rem;color:#FFF;text-align:center;}
+.mine-menu{overflow:hidden;background:#FFF;}
+.mine-menu-row{padding:0 1rem;border-bottom:1px solid #eaeaea;overflow:hidden;background-image:url(../imgs/arrow_more.png);background-repeat:no-repeat;background-position:97% center;background-size:auto 0.766rem;}
+.mine-menu-row-title{display:inline-block;float:left;font-size:0.833rem;line-height:2rem;color:#000;;height:2rem;padding:0.5rem 0;font-weight:bold;background-repeat:no-repeat;background-position:left center;background-size:auto 1rem;}
+.mine-menu-row-value{float:right;margin-right:1rem;font-size:0.833rem;line-height:2rem;color:#999;;height:2rem;padding:0.5rem 0;}
+.mine-menu-btn{text-align:center;font-size:0.9rem;line-height:2rem;color:#000;;height:2rem;padding:0.5rem 0;font-weight:bold;}
+
+/*------------------------------我的战队*/
+.mine-teams{overflow:hidden;}
+.mine-teams-banner{height:1.166rem;font-size:0.8rem;color:#999;line-height:1.16rem;padding:0.5rem 1rem;}
+.mine-teams-banner i:nth-child(1){float:left;}
+.mine-teams-banner i:nth-child(2){float:right;}
+.mine-teams-list{overflow:hidden;background:#FFF;}
+.mine-teams-list li{padding:1rem;border-bottom:1px solid #f2f2f2;overflow:hidden;}
+.mine-teams-list-face{width:2.433rem;height:2.433rem;float:left;background-color:#999;background-repeat:no-repeat;background-position:center center;background-size:100% 100%;border-radius:50%;-webkit-border-radius:50%;}
+.mine-teams-list-info{margin-left:3rem;}
+.mine-teams-list-info-row1{overflow:hidden;}
+.mine-teams-list-info-row1 span{font-size:0.866rem;line-height:1rem;color:#000;font-weight:bold;display:inline-block;}
+.mine-teams-list-info-row1 i{font-size:0.666rem;line-height:0.666rem;color:#000;background:#ffd100;display:inline-block;padding:0.1rem 0.2rem;border-radius:0.2rem;-webkit-border-radius:0.2rem;}
+.mine-teams-list-info-row1 p{display:inline-block;float:right;font-size:0.866rem;line-height:1rem;color:#ffd100;font-weight:bold;}
+.mine-teams-list-info-row2{overflow:hidden;margin-top:0.2rem;}
+.mine-teams-list-info-row2 span{font-size:0.866rem;line-height:1rem;color:#000;display:inline-block;float:left;}
+.mine-teams-list-info-row2 p{display:inline-block;float:right;font-size:0.733rem;line-height:1rem;color:#999;text-align:right;max-width:75%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mine-teams-btn{position:fixed;z-index:97;bottom:0;background:#FFF;text-align:center;width:100%;height:2.66rem;padding-bottom:1.333rem;}
+.mine-teams-btn input{background:#000;color:#FFF;font-size:0.933rem;width:92%;margin:0 auto;line-height:2.66rem;height:2.66rem;border-radius:1.33rem;-webkit-border-radius:1.33rem;}
+.mine-teams-btn input:disabled{background:#000;color:#DDD;box-sizing:content-box;}
+
+
+
+
+
+
+
+
+
+
+
+

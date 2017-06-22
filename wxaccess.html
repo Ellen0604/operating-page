@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=utf-8">
+		<meta charset="utf-8">
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="format-detection" content="telephone=no"/>
+		<title>微信登陆.</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" />
+		<link href="css/pages.css"  rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+	</head>
+	<body>
+		<script>
+			var code=CF.queryString("code");
+			var state=CF.queryString("state");
+			if(code){
+				CF.get(_ApiRoot_+"connects/weixin-user",{"code":code},function(result){
+					console.log(JSON.stringify(result));
+					if(result){
+						if(result.code==200){
+							if(result.data){
+								CF.localData("51laizhan_weixinData",JSON.stringify(result.data));
+								CF.call(_ApiRoot_+"connects/login",{"type":2,"openid":result.data.openid,"system":3},function(result){
+									console.log(JSON.stringify(result));
+									state=state?decodeURIComponent(state):"matche_list.html";
+									if(result.code==200){
+										if(result.data.cyberbar_id>0){
+											CF.localData("51laizhan_userData",JSON.stringify(result.data));
+											CF.localData("51laizhan_auth_key",result.data.auth_key);
+											CF.reURL("matche_list.html",true);
+										}else{
+											CF.showTips("该用户未绑定网络管理员!");
+											setTimeout(function(){WeixinJSBridge.invoke('closeWindow');},2000);	
+										}		
+									}else if(result.code==402){
+										CF.localData("51laizhan_loginFrom",state);
+										CF.reURL("login.html");
+									}else{
+										CF.localData("51laizhan_loginFrom",state);
+										CF.showTips(result.tips);
+									};
+								});
+							}else{
+								CF.showTips("用户信息获取失败，重新打开试试！");
+							};
+						}else{
+							CF.showTips(result.tips);
+						};
+					}else{
+						CF.showTips("获取失败，重新打开试试！");
+					};
+				});
+			}else{
+				CF.showTips("code not find！");
+			};
+		</script>
+	</body>
+</html>

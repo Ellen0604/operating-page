@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta content="text/html; charset=utf-8">
+		<meta charset="utf-8">
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="format-detection" content="telephone=no"/>
+		<title>赠送积分</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="css/pages.css">
+		<link href="css/ck_operating_pages.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="js/zepto.min.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+	</head>
+	<body>
+		<section class="distribution-points-menu">
+			<ul>			
+				<li class="distribution-points-menu-row border-bottom">	
+					<label for="distribution-points-first"></label>
+					<div class="distribution-points-menu-row-medal"><img src="../imgs/ico_champion.png"></div>
+					<div class="distribution-points-menu-row-title">
+						<div></div>
+						<span></span>
+					</div>
+					<div class="distribution-points-menu-row-value">
+						<input id="distribution-points-first" type="text" placeholder="请输入">
+					</div>	
+				</li>
+				<li class="distribution-points-menu-row border-bottom">	
+					<label for="distribution-points-second"></label>
+					<div class="distribution-points-menu-row-medal"><img src="../imgs/ico_runnerUp.png"></div>
+					<div class="distribution-points-menu-row-title">
+						<div></div>
+						<span></span>
+					</div>
+					<div class="distribution-points-menu-row-value">
+						<input id="distribution-points-second" type="text" placeholder="请输入">
+					</div>
+				</li>
+				<li class="distribution-points-menu-row border-bottom">	
+					<label for="distribution-points-third"></label>
+					<div class="distribution-points-menu-row-medal"><img src="../imgs/ico_thirdPlace.png"></div>
+					<div class="distribution-points-menu-row-title">
+						<div></div>
+						<span></span>
+					</div>
+					<div class="distribution-points-menu-row-value">
+						<input id="distribution-points-third" type="text" placeholder="请输入">
+					</div>	
+				</li>			
+			</ul>
+			<div class="distribution-points-menu-submit">
+				<input id="btn-submit" type="button" value="确定">
+			</div>
+		</section>
+	</body>
+	<script type="text/javascript">
+		// 获取排名前三队伍
+		var initDistributionPoints=function(){
+			var id = 1;		
+			function getData(){
+				CF.showLoading(1);
+				CF.get(_ApiRoot_+"matches/result",{"id":id},function(result){
+			        console.log(JSON.stringify(result));
+			        if(result.code==200){
+			        	if(result.data){
+			        		fillData(result.data);
+			        	}
+			        }
+			    });
+			};		
+			function fillData(D){
+				for (var i = 0; i < D.length; i++) {
+					var img = "<img src="+D[i].upfile+">";
+					$(".distribution-points-menu-row-title div").eq(i).html(img);
+					$(".distribution-points-menu-row-title span").eq(i).text(D[i].name);
+				}
+			};
+			getData();
+		};
+		$(function(){
+			initDistributionPoints();
+		});
+
+		// 点击确定按钮
+		var title = "确定赠送积分";
+		var $inputs = $(".distribution-points-menu-row-value input");
+
+		var ConfirmTipsCallBack=function(){
+			
+		}
+
+		$(".distribution-points-menu-submit").click(function(){
+			for (var i = 0; i < $inputs.length; i++) {
+				if ($inputs[i].value=="") {
+					CF.showTips("积分不能为空");
+					return;
+				}
+			}
+			CF.showConfirmTips(title,ConfirmTipsCallBack);
+		})
+	</script>
+</html>

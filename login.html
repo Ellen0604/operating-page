@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=utf-8">
+		<meta charset="utf-8">
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="format-detection" content="telephone=no"/>
+		<title>验证手机号完成登陆</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" />
+		<link href="css/pages.css"  rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+	</head>
+	<body>
+		<div class="fullpage sms-page">
+			<section class="edge">
+				<div class="sms-row">
+					<div class="sms-row-tel"><input id="inp_mobile" type="tel" maxlength="11" placeholder="输入手机号码"></div>
+				</div>
+				<div class="sms-row">
+					<div class="sms-row-get"><input id="btn_getvcode" type="button" value="获取验证码"></div>
+					<div class="sms-row-vcode"><input id="inp_vcode" type="tel" maxlength="4" placeholder="输入短信验证码"></div>
+				</div>
+				<div class="sms-submit"><input id="btn_submit" type="button" value="完成"></div>
+			</section>
+		</div>		
+	</body>
+	
+<script type="text/javascript" src="js/login.js"></script>
+</html>

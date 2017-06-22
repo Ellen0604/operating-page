@@ -1,0 +1,118 @@
+body{background-color:#f2f2f2;}
+/* 公用 */
+.border-bottom{border-bottom:1px solid #eaeaea;}
+/* 赛事介绍 */
+.matche-introduce-menu{padding:0.933333rem;box-sizing:border-box;width:100%;height:100%;background-color:white;}
+.matche-introduce-menu ul{margin-bottom:1.933333rem;}
+.matche-introduce-menu ul li{line-height:1.333333rem;margin:0.933333rem 0;}
+.matche-introduce-menu-title{font-size:0.933333rem;font-weight:bold;}
+.matche-introduce-menu-value{font-size:0.866667rem;color:#333;}
+.matche-introduce-menu-submit{width:92%;position:absolute;left:0;right:0;bottom:1.2rem;margin:auto;text-align:center;}
+.matche-introduce-menu-submit input{background:#000;color:#FFF;font-size:0.933rem;width:100%;line-height:2.66rem;height:2.66rem;border-radius:1.33rem;-webkit-border-radius:1.33rem;}
+.matche-introduce-menu-submit input:disabled{background:#000;color:#DDD;box-sizing:content-box;}
+
+/* 赛事编辑 */
+.matche-introduce-edit-menu{height:100%;width:100%;background-color:white;padding:0.933333rem;box-sizing:border-box;}
+.matche-introduce-edit-menu ul{margin-bottom:1rem;}
+.matche-introduce-edit-menu ul li{margin:0.533333rem 0;}
+textarea{width:100%;height:4.8rem;border:1px solid #ccc;background-color:#f8f8f8;resize:none;border-radius:0.266667rem;padding:0.533333rem 0.666667rem;box-sizing:border-box;line-height:1.333333rem;}
+.matche-introduce-textarea{height:10.933333rem}
+.matche-introduce-edit-menu-title{font-size:0.833333rem;font-weight:bold;}
+.matche-introduce-edit-menu-value textarea{font-size:0.83rem;color:#999;}
+.matche-introduce-edit-btn{display:flex;justify-content:space-around;position:absolute;left:0;bottom:1.2rem;width:100%;}
+.matche-introduce-edit-btn input{width:11.333333rem;height:2.666667rem;color:white;background-color:black;border-radius:5rem;}
+.matche-introduce-edit-abolished input{background-color:#ccc;}
+
+/* 创建比赛 */
+.create-matche-menu{width:100%;background-color:white;padding:0.933333rem;box-sizing:border-box;}
+.create-matche-menu ul{margin-bottom:1rem;}
+.create-matche-menu ul li{margin:0.533333rem 0;}
+.create-matche-textarea{height:10.933333rem}
+.create-matche-menu-title{font-size:0.833333rem;font-weight:bold;}
+.create-matche-menu-value textarea{font-size:0.83rem;color:#999;}
+.create-matche-menu-row{border-bottom:1px solid #eaeaea;overflow:hidden;background-image:url(../imgs/arrow_more.png);background-repeat:no-repeat;background-position:100% center;background-size:auto 0.766rem;}
+.create-matche-menu-row-title{display:inline-block;float:left;font-size:0.833rem;line-height:2rem;color:#000;height:2rem;padding:0.5rem 0;font-weight:bold;background-repeat:no-repeat;background-position:left center;background-size:auto 1rem;}
+.create-matche-menu-row-value{display:flex;align-items:center;float:right;margin-right:1rem;font-size:0.833rem;line-height:2rem;height:2rem;padding:0.5rem 0;}
+.create-matche-menu-row-value img{width:1.333333rem;height:1.333333rem;margin:0 0.4rem;}
+.create-matche-menu-submit{width:92%;position:fixed;left:0;right:0;bottom:1.2rem;margin:auto;text-align:center;}
+.create-matche-submit{width:92%;margin:auto;text-align:center;}
+.create-matche-menu-submit input,.create-matche-submit input{background:#000;color:#FFF;font-size:0.933rem;width:100%;line-height:2.66rem;height:2.66rem;border-radius:1.33rem;-webkit-border-radius:1.33rem;}
+.create-matche-menu-submit input:disabled,.create-matche-submit input:disabled{background:#000;color:#DDD;box-sizing:content-box;}
+
+/* 比赛设置 */
+.matche-setting-menu{overflow:hidden;}
+.matche-setting-menu ul{background-color:white;padding:0 0.933333rem;box-sizing:border-box;}
+.matche-setting-menu-row{position:relative;overflow:hidden;background-image:url(../imgs/arrow_more.png);background-repeat:no-repeat;background-position:100% center;background-size:auto 0.766rem;}
+.matche-setting-menu-row-title{display:inline-block;float:left;font-size:0.833rem;line-height:2rem;color:#000;height:2rem;padding:0.5rem 0;font-weight:bold;background-repeat:no-repeat;background-position:left center;background-size:auto 1rem;}
+.matche-setting-menu-row-value{display:flex;align-items:center;float:right;margin-right:1rem;font-size:0.833rem;line-height:2rem;height:2rem;padding:0.5rem 0;}
+.matche-setting-menu-row label{display:block;position:absolute;left:0;top:0;width:100%;height:100%;}
+.matche-setting-menu-row-value input{font-size:0.833rem;text-align:right;width:100px;}
+.matche-setting-remove{color:white;display:flex;justify-content:center;align-items:center;width:15%;background-color:red;position:relative;right:0;}
+.matche-setting-menu .flex-ul{position:relative;display:flex;width:123%;justify-content:space-around;}
+.flex-ul .matche-setting-menu-row{width:81%;margin-right:0.933333rem;}
+
+/* 分配积分 */
+.distribution-points-menu{height:100%;width:100%;background-color:white;}
+.distribution-points-menu ul{background-color:white;padding:0 0.933333rem;box-sizing:border-box;}
+.distribution-points-menu-row{position:relative;overflow:hidden;background-image:url(../imgs/arrow_more.png);background-repeat:no-repeat;background-position:100% center;background-size:auto 0.766rem;}
+.distribution-points-menu-row-title{display:flex;float:left;font-size:0.833rem;line-height:2rem;color:#000;height:2rem;padding:0.5rem 0;font-weight:bold;background-repeat:no-repeat;background-position:left center;background-size:auto 1rem;}
+.distribution-points-menu-row-value{display:flex;align-items:center;float:right;margin-right:1rem;font-size:0.833rem;line-height:2rem;height:2rem;padding:0.5rem 0;}
+.distribution-points-menu-row label{display:block;position:absolute;left:0;top:0;width:100%;height:100%;}
+.distribution-points-menu-row-value input{text-align:right;width:100px;font-size:0.833rem;}
+.distribution-points-menu-row-medal{float:left;padding-top:0.8rem;margin-right:1rem;}
+.distribution-points-menu-row-medal{width:0.8rem;}
+.distribution-points-menu-submit{width:92%;position:absolute;left:0;right:0;bottom:1.2rem;margin:auto;text-align:center;}
+.distribution-points-menu-submit input{background:#000;color:#FFF;font-size:0.933rem;width:100%;line-height:2.66rem;height:2.66rem;border-radius:1.33rem;-webkit-border-radius:1.33rem;}
+.distribution-points-menu-submit input:disabled{background:#000;color:#DDD;box-sizing:content-box;}
+.distribution-points-menu-row-title div{margin-right:0.5rem;overflow:hidden;width:1.866667rem;height:1.866667rem;border-radius:1.866667rem;}
+.distribution-points-menu-row-title div img{width:100%;height:100%;}
+
+/* 管理比赛详情 */
+.management-matche-detail-menu{box-sizing:border-box;padding:0 0.933333rem;width:100%;background-color:white;}
+.management-matche-detail-menu ul{position:relative}
+.management-matche-detail-menu li{padding:0.5rem 0;overflow:hidden;}
+.management-matche-detail-menu a{color:#666;} 
+.management-matche-detail-menu-introduce li{font-size:0.866667rem;}
+.management-matche-detail-menu-title{font-size:0.866667rem;line-height:2rem;height:2rem;}
+.management-matche-detail-menu-introduce-txt{color:#999;line-height:1.266667rem;}
+.management-matche-detail-menu-introduce-move{color:#666;text-align:center;background-image:url(../imgs/arrow_more.png);background-repeat:no-repeat;background-position:60% center;background-size:auto 0.8rem;}
+.management-matche-detail-menu-course-round{color:#333;font-size:0.8rem;}
+.management-matche-detail-menu-course-round span{border-left:4px solid #ffd100;padding-left:0.4rem;}
+.management-matche-detail-menu-course-content{display:flex;justify-content:space-between;font-size:0.8rem;}
+.management-matche-detail-menu-course-time{display:flex;align-items:center;flex-wrap:wrap;color:#666}
+.management-matche-detail-menu-course-teams{border:1px solid #ccc;width:100%;background-image:url(../imgs/arrow_more.png);background-repeat:no-repeat;background-position:96% center;background-size:auto 0.8rem;}
+.management-matche-detail-menu-course-teams div{margin:0.5rem;display:flex;align-items:center;}
+.management-matche-detail-menu-course-teams img{border-radius:1.333333rem;width:1.333333rem;height:1.333333rem;margin-right:0.666667rem;}
+.management-matche-detail-menu-submit{width:100%;background-color:white;padding:1rem 0;}
+.management-matche-detail-menu-submit input{background:#000;color:#FFF;font-size:0.933rem;width:100%;line-height:2.66rem;height:2.66rem;border-radius:1.33rem;-webkit-border-radius:1.33rem;}
+.management-matche-detail-menu-submit input:disabled{background:#000;color:#DDD;box-sizing:content-box;}
+#draw_remind{font-size:0.866667rem;line-height:2rem;width:5rem;text-align:center;background-color:black;border-radius:5rem;color:white;position:absolute;top:0.5rem;right:0;}
+#match_status{position: absolute;top: 3.5rem;right: 2rem;border: 1px solid black;border-radius: 2rem;padding: 0;width: 5rem;text-align: center;}
+.matche-detail-teams-menu{overflow:hidden;}
+.matche-detail-teams{height: 6rem;width: 150%;display: flex;margin-left: -6.933333rem;}
+.matche-detail-teams .signed{width: 6rem;height: 4rem;background-color: green;margin-right: 1rem;}
+.matche-detail-teams .teams_head{width:4rem;height: 4rem;background-color: black;border-radius:4rem;}
+.matche-detail-teams .telephone{width: 2rem;height: 2rem;background-color: green;}
+.matche-detail-teams .delTeam{background-color: red;color:white;}
+
+/* 管理比赛详情结束 */
+.management-matche-detail-ranking-title{display:flex;justify-content:space-between;margin-bottom:0.5rem;}
+.pointsBtn{padding-right:0.7rem;background-image:url(../imgs/arrow_more.png);background-repeat:no-repeat;background-position:right center;background-size:auto 0.8rem;}
+.management-matche-detail-medal{width:0.8rem;}
+.management-matche-detail-ranking{display:flex;align-items:center;}
+.management-matche-detail-ranking-teams{display:flex;align-items:center;font-weight:bold;}
+.management-matche-detail-ranking-teams img{margin:0 0.8rem;width:2.0rem;border-radius:1.866667rem;}
+
+/* 赛事列表 */
+.matche-list-menu{margin-top: 3.1rem;margin-bottom: 4.5rem;}
+.matche-list-menu ul{background-color:white;margin:0.66rem 0;padding:0.8rem 0.8rem 0.6rem 0.8rem;box-sizing:border-box;}
+.matche-list-menu-row-title{font-size:1rem;}
+.matche-list-menu-row-award,.matche-list-menu-row-type{font-size:0.7rem;display:flex;justify-content:space-between;margin:0.5rem 0 0.9rem;}
+.matche-list-menu-row-award{color:#666;background-image:url(../imgs/ico_prize.png);background-repeat:no-repeat;background-position:0 0.1rem;background-size:0.933rem auto;padding-left: 1.2rem;}
+.matche-list-menu-row-type span{margin-right:0.4rem;font-weight:bold;background-color:#ffd100;padding:0.2rem 0.4rem;border-radius:1rem;}
+.matche-list-menu-row-location{padding-left:1rem;color:#999;background-image:url(../imgs/ico_location.png);background-repeat:no-repeat;background-position:0 0.1rem;background-size:0.566rem auto;}
+.matche-list-menu-row-prize{padding-left:1.2rem;margin:0.5rem 0 0.9rem;color:#666;font-size:0.7rem;background-image:url(../imgs/ico_prize.png);background-repeat:no-repeat;background-position:0 0.06rem;background-size:0.933rem auto;}
+
+
+
+

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta content="text/html; charset=utf-8">
+		<meta charset="utf-8">
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="format-detection" content="telephone=no"/>
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="css/pages.css">
+		<link href="css/ck_operating_pages.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="js/zepto.min.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+	</head>
+	<body>
+		<section class="management-matche-detail-menu">
+			<ul class="management-matche-detail-menu-introduce">
+				<li class="management-matche-detail-menu-title border-bottom">赛事介绍</li>
+				<li id="match_status">抽签完成</li>
+				<!-- <li class="management-matche-detail-menu-introduce-type">英雄联盟</li>
+				<li class="management-matche-detail-menu-introduce-txt">1、如果你是六盘水地区高手，可录用为核心队员，代表战队参加各类正式比赛；提供福利：免费训练场地 ；全套装备；<br/>2、如果你是六盘水地区普通玩家，不论实力如何均欢迎加入，有专业老队员带队训练，每周举办队内赛提供丰富奖品，助你迅速成长...</li> -->
+				<!-- <li class="management-matche-detail-menu-introduce-move">
+					更多介绍
+				</li> -->
+			</ul>
+
+			<ul class="management-matche-detail-menu-course">
+				<li class="management-matche-detail-menu-title border-bottom" id="changeTitle">赛事进程</li>
+				<li style="padding:0;"><span id="draw_remind">抽签提醒</span></li>
+				<!-- <li class="management-matche-detail-menu-course-round"><span>第一轮</span></li> -->
+				<!-- <li class="management-matche-detail-menu-course-content">
+					<div class="management-matche-detail-menu-course-time">
+						<p>2017-01-10</p>
+						<span>12:00</span>
+					</div>
+					<div class="management-matche-detail-menu-course-teams">
+						<div class="team1">
+							<img src="image/teams_head.png">
+							<span>星空战队</span>
+						</div>
+						<div class="team2">
+							<img src="image/teams_head.png">
+							<span>星空战队</span>
+						</div>
+					</div>
+				</li> -->		
+			</ul>
+			<ul class="matche-detail-teams-menu">
+				<!-- <li class="matche-detail-teams" style="height: 6rem;width: 150%;display: flex;margin-left: -6.933333rem;">
+					<div class="signed" style="width: 6rem;height: 4rem;background-color: green;margin-right: 0.933333rem;">签到</div>
+					<div class="teams_head" style="width:4rem;height: 4rem;background-color: black;border-radius:4rem;"></div>
+					<div>
+						<div>
+							<span>啦啦队</span>
+							<span>签到</span>
+						</div>
+						<span>联系人：周杰伦</span>
+					</div>
+					<div class="telephone" style="width: 2rem;height: 2rem;background-color: green;"></div>
+					<div class="delTeam" style="background-color: red;">删除</div>
+				</li> -->
+			</ul>
+			<div class="management-matche-detail-menu-submit">
+				<input id="btn-submit" type="button" value="进入第二轮">
+			</div>
+		</section>
+	</body>
+	<script type="text/javascript">
+		var matchesId=0;
+		var matchesType=["","淘汰赛","积分赛","擂台赛","预选赛"];
+		var matchesStatus=["已失效","报名中","进行中","已结束","抽签中"];	
+		var discussPage=1;
+		var discussPageSize=50;
+		var discussCanLoad=true;
+		var tempPic="";
+		var tempPicIndex=1;
+		var discussHasInit=false;
+		var ak=CF.localData("51laizhan_auth_key");
+		var $submitBtn=$("#btn-submit");
+		var nowDate = new Date().getTime();
+
+		/*===========================top部分====================================*/
+		var loadMatchesDetail=function(){
+			CF.showLoading(1);
+			var pdata={};
+			if(_authKey_) pdata.auth_key=_authKey_;
+			CF.get(_ApiRoot_+"matches/"+matchesId,pdata,function(result){
+		        console.log(result);
+		        if(result.code==200){
+		        	if(result.data){
+		        		fillMatchesDetail(result.data);
+		        	}
+		        }
+		    });
+		};
+		var fillMatchesDetail=function(D){
+			document.title=D.title;
+			$("#match_status").text(matchesStatus[D.status]);
+			$("#changeTitle").text("参赛队伍");
+        	$("#draw_remind").show();
+        	if (D.type==1||D.type==4) {
+        		$submitBtn.val("抽签");
+        		if (nowDate>D.deadline_time) {
+        			$submitBtn.click(function(){
+	        			CF.call(_ApiRoot_+"matches/draw?auth_key="+ak,{"id":matchesId},function(result){
+					        console.log(result);
+					        if(result.code==200){
+					        	
+					        }
+					    });
+	        		})
+        		}
+        	}
+        	else if(D.type==2){$submitBtn.val("生成进程表");}
+        	else{$submitBtn.val("开始比赛");}
+
+			var $List=$(".management-matche-detail-menu-introduce");
+			var htm='<li class="management-matche-detail-menu-introduce-type">'+D.game.name+'</li>'+
+					'<li class="management-matche-detail-menu-introduce-txt">'+D.content+'</li>'+
+					'<li class="management-matche-detail-menu-introduce-move" data-id="'+D.id+'">更多介绍</li>';
+			$List.append(htm);
+			var $moreBtn=$(".management-matche-detail-menu-introduce-move");
+			$moreBtn.click(function(){
+				var newsId=$(this).attr("data-id");
+				CF.reURL("matche_introduce.html?mid="+newsId);
+			});
+		};
+
+		/*===========================bottom进程信息================================*/
+
+		// 获取进程信息
+		var initManagementMatcheDetail=function(){
+			
+			function getData(){
+				CF.showLoading(1);
+				CF.get(_ApiRoot_+"match-processes/arena",{"id":matchesId},function(result){
+			        console.log(JSON.stringify(result));
+			        if(result.code==200){
+			        	if(result.data.status!=2||result.data.status!=3){
+			        		fillCreateTeams();
+			        	}
+			        	else{
+			        		$("#draw_remind").hide();
+			        		fillCreateRace(result.data.items);
+			        	}
+			        }
+			        else if (result.code==406) {
+			        	$submitBtn.css({"background":"#DDD"});
+			        	fillCreateTeams();
+			        }
+			    });
+			};	
+
+			// 创建参赛队伍信息
+			function fillCreateTeams(){
+				var $List=$(".matche-detail-teams-menu");
+	        	var pdata={"id":matchesId};
+	        	var swipeR=false;
+				var swipeL=false;
+				if(_authKey_) pdata.auth_key=_authKey_;
+	        	CF.get(_ApiRoot_+"matches/clubs2",pdata,function(result){
+			        console.log(result);
+			        if(result.code==200){
+			        	var D=result.data;
+			        	if(D&&D.length>0){
+			        		for (var i = 0; i < D.length; i++) {
+			        			var signed='<div class="signed">签到</div>';
+			        			var sign="";
+			        			if(D[i].sign==1){
+									sign='<span>签到</span>';
+									signed='<div class="signed">已签到</div>';	
+								}
+								var htm = '<li class="matche-detail-teams" data-id="'+D[i].id+'">'+signed+
+												'<div class="teams_head"></div>'+
+												'<div><span>'+D[i].name+'</span>'+sign+'<div><span>联系人：'+D[i].contact+'</span></div></div>'+
+												'<div class="telephone"></div>'+
+												'<div class="delTeam">删除</div>'+
+											'</li>';
+								var $elm=$(htm);
+								$List.append($elm);
+								$elm.on("swipeRight",function(){
+									if (swipeL) {
+										$(this).css({"margin-left":"-7rem"});
+										swipeL=false;
+									}else{
+										swipeR=true;
+										$(this).css({"margin-left":0});
+									}
+								});
+								$elm.on("swipeLeft",function(){
+									if (swipeR) {
+										$(this).css({"margin-left":"-7rem"});
+										swipeR=false;
+									}else{
+										swipeL=true;
+										$(this).css({"margin-left":"-10rem"});
+									}
+								});
+								if(D[i].sign==0){
+									$(".signed").on("click",function(){
+										var _this=$(this);
+										pdata.club_id=$(this).parent().attr("data-id");
+										pdata.sign=1;
+										CF.call(_ApiRoot_+"matches/sign?auth_key="+ak,pdata,function(result){
+											if (result.code==200) {
+												CF.showTips("签到成功!");
+												location.reload();
+											}
+										});
+									})
+								}
+							}
+			        	}
+			        	else{
+			        		var htm = '<li style="text-align:center;">暂无报名队伍</li>';
+			        		$List.append(htm);
+			        	}
+			        }
+			    });
+			};
+
+			// 创建赛程
+			function fillCreateRace(D){
+				var $List=$(".management-matche-detail-menu-course");
+				for (var i = 0; i < D.length; i++) {
+					var htm = '<li class="management-matche-detail-menu-course-round"><span>第一轮</span></li>'+'<li class="management-matche-detail-menu-course-content"><div class="management-matche-detail-menu-course-time"><span>'+CF.unixToDate(D[i].updated_at,"hhmm")+'</span></div><div class="management-matche-detail-menu-course-teams"><div class="team1"><img src='+D[i].club_l.upfile+'><span>'+D[i].club_l.name+'</span></div><div class="team2"><img src='+D[i].club_r.upfile+'><span>'+D[i].club_r.name+'</span></div></div></li>';
+					$List.append(htm);
+				}
+			};
+
+			// 抽签提醒
+			function drawRemind(){
+				$("#draw_remind").click(function(){
+					var _this=$(this);
+					CF.call(_ApiRoot_+"matches/remind?auth_key"+ak,function(result){
+				        console.log(result);
+				        if(result.code==200){
+				        	CF.showTips("已发送提醒!");
+				        	_this.text("已提醒");
+				        	_this.css({"background":"gray"});
+				        }
+				        else if(result.code==401){
+				        	CF.showTips("登录超时！即将重新登录！",null,function(){
+								CF.reURL("wxlogin.html",true);
+							});
+				        }
+				    })
+				})
+			}
+			getData();
+			// drawRemind();
+		};
+
+		$(function(){
+			matchesId=CF.queryString("mid");
+			loadMatchesDetail();
+			initManagementMatcheDetail();
+		});
+	</script>
+</html>

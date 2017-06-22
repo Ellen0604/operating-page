@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta content="text/html; charset=utf-8">
+		<meta charset="utf-8">
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="format-detection" content="telephone=no"/>
+		<title>赛事介绍</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" />
+		<link href="css/ck_operating_pages.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+	</head>
+	<body>
+		<section class="matche-introduce-menu">
+			<ul>
+				<li class="matche-introduce-menu-title">报名截止时间</li>
+				<li class="matche-introduce-menu-value" id="matchDeadlineTime">2016-8-9 12:00</li>
+			</ul>
+			<ul>
+				<li class="matche-introduce-menu-title">比赛时间</li>
+				<li class="matche-introduce-menu-value" id="matchStartTime">2016-8-10 12:00</li>
+			</ul>
+			<ul>
+				<li class="matche-introduce-menu-title">赛事标题</li>
+				<li class="matche-introduce-menu-value" id="matchTitle"></li>
+			</ul>
+			<ul>
+				<li class="matche-introduce-menu-title">赛事标题</li>
+				<li class="matche-introduce-menu-value" id="matchTitle"></li>
+			</ul>
+			<ul>
+				<li class="matche-introduce-menu-title">奖项</li>
+				<li class="matche-introduce-menu-value" id="matchAward"></li>
+			</ul>
+			<ul>
+				<li class="matche-introduce-menu-title">赛事介绍</li>
+				<li class="matche-introduce-menu-value" id="matcheIntroduce"></li>
+			</ul>
+			<!-- <div class="page-end-loadding" id="introduce_endloading"></div> -->
+			<div class="matche-introduce-menu-submit">
+				<input id="btn-submit" type="button" value="编辑">
+			</div>
+		</section>
+	</body>
+	<script type="text/javascript">
+		var matchesId=0;
+
+		var initMatchMore=function(){
+			CF.showLoading(1);
+			var pdata={};
+			if(_authKey_) pdata.auth_key=_authKey_;
+			function getData(){
+				CF.get(_ApiRoot_+"matches/"+matchesId,pdata,function(result){
+			        console.log(result);
+			        if(result.code==200){
+			        	if(result.data){
+			        		fillData(result.data);
+			        	}
+			        }
+			    });
+			};
+			function fillData(D){
+				$("#matchTitle").text(D.title);
+				$("#matchAward").text(D.award);
+				$("#matcheIntroduce").text(D.content);
+			};
+			getData();
+		};
+		$(function(){
+			matchesId=CF.queryString("mid");
+			initMatchMore();
+			$("#btn-submit").click(function(){
+				CF.reURL("matche_introduce_edit.html?mid="+matchesId);
+			})
+		});
+
+	</script>
+</html>

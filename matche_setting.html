@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta content="text/html; charset=utf-8">
+		<meta charset="utf-8">
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="format-detection" content="telephone=no"/>
+		<title>设置</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="css/pages.css">
+		<link href="css/ck_operating_pages.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="js/zepto.min.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+	</head>
+	<body>
+		<section class="matche-setting-menu">
+			<ul class="matche-setting-date bottom-space">			
+				<li class="matche-setting-menu-row border-bottom">	
+					<label for="date"></label>
+					<div class="matche-setting-menu-row-title">日期</div>
+					<div class="matche-setting-menu-row-value">
+						<input id="date" type="text" value="2017-05-12">
+					</div>	
+				</li>
+				<li class="matche-setting-menu-row">	
+					<label for="time"></label>
+					<div class="matche-setting-menu-row-title">时间</div>
+					<div class="matche-setting-menu-row-value">
+						<input id="time" type="text" value="12:00">
+					</div>	
+				</li>				
+			</ul>
+
+			<ul class="matche-setting-teams">			
+				<li class="border-bottom flex-ul">
+					<div class="matche-setting-menu-row">
+						<div class="matche-setting-menu-row-title">LBG战队</div>
+						<div class="matche-setting-menu-row-value">设为胜者</div>
+					</div>
+					<div class="matche-setting-remove">删除</div>		
+				</li>
+				<li class="border-bottom flex-ul">
+					<div class="matche-setting-menu-row">
+						<div class="matche-setting-menu-row-title">LBG战队</div>
+						<div class="matche-setting-menu-row-value">设为胜者</div>
+					</div>
+					<div class="matche-setting-remove">删除</div>
+				</li>
+			</ul>
+		</section>
+	</body>
+	<script type="text/javascript">
+		// 左滑显示删除
+		$(".flex-ul").on("swipeLeft",function(){
+			$(this).animate({"left":"-18%"},200);
+		});
+		$(".flex-ul").on("swipeRight",function(){
+			$(this).animate({"left":"0"},200);
+		});
+
+		// 获取焦点改变type值
+		$("input").blur(function(){
+			$(this).attr("type","text");
+		})
+		$("#date").focus(function(){
+			$(this).attr("type","date");
+		});
+		$("#time").focus(function(){
+			$(this).attr("type","time");
+		});
+	</script>
+</html>

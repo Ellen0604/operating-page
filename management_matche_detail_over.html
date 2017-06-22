@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta content="text/html; charset=utf-8">
+		<meta charset="utf-8">
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="format-detection" content="telephone=no"/>
+		<title>网吧高级战队赛事</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="css/pages.css">
+		<link href="css/ck_operating_pages.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+	</head>
+	<body>
+		<section class="management-matche-detail-menu">
+			<ul class="management-matche-detail-menu-introduce">
+				<li class="management-matche-detail-menu-title border-bottom">赛事介绍</li>
+				<li class="management-matche-detail-menu-introduce-type">英雄联盟</li>
+				<li class="management-matche-detail-menu-introduce-txt">1、如果你是六盘水地区高手，可录用为核心队员，代表战队参加各类正式比赛；提供福利：免费训练场地 ；全套装备；<br/>2、如果你是六盘水地区普通玩家，不论实力如何均欢迎加入，有专业老队员带队训练，每周举办队内赛提供丰富奖品，助你迅速成长...</li>
+				<li class="management-matche-detail-menu-introduce-move">
+					<a href="matche_introduce.html">更多介绍</a>
+				</li>
+			</ul>
+			
+			<ul class="management-matche-detail-ranking-wrap">
+				<li class="management-matche-detail-ranking-title border-bottom">
+					<span>最终名次</span>
+					<a href="distribution_points.html"><span class="pointsBtn">赠送积分</span></a>
+				</li>
+				<li class="management-matche-detail-ranking">
+					<div class="management-matche-detail-medal"><img src="../imgs/ico_champion.png"></div>
+				</li>
+				<li class="management-matche-detail-ranking">
+					<div class="management-matche-detail-medal"><img src="../imgs/ico_runnerUp.png"></div>
+				</li>
+				<li class="management-matche-detail-ranking">
+					<div class="management-matche-detail-medal"><img src="../imgs/ico_thirdPlace.png"></div>
+				</li>
+			</ul>
+
+			<ul class="management-matche-detail-menu-course">
+				<li class="management-matche-detail-menu-title border-bottom">赛事进程</li>
+				<li class="management-matche-detail-menu-course-round"><span>第一轮</span></li>
+				<!-- <li class="management-matche-detail-menu-course-content">
+					<div class="management-matche-detail-menu-course-time">
+						<p>2017-01-10</p>
+						<span>12:00</span>
+					</div>
+					<div class="management-matche-detail-menu-course-teams">
+						<div class="team1">
+							<img src="image/teams_head.png">
+							<span>星空战队</span>
+						</div>
+						<div class="team2">
+							<img src="image/teams_head.png">
+							<span>星空战队</span>
+						</div>
+					</div>
+				</li> -->
+			</ul>
+		</section>
+	</body>
+	<script type="text/javascript">
+		// 获取进程信息
+		var initManagementMatcheDetail=function(){
+			var id = 1;		
+			function getData(){
+				CF.showLoading(1);
+				CF.get(_ApiRoot_+"match-processes/arena",{"id":id},function(result){
+			        console.log(JSON.stringify(result));
+			        if(result.code==200){
+			        	if(result.data){
+			        		fillData(result.data.items);
+			        	}
+			        }
+			    });
+			};	
+
+			function fillData(D){
+				for (var i = 0; i < D.length; i++) {
+					var htm = '<li class="management-matche-detail-menu-course-content"><div class="management-matche-detail-menu-course-time"><span>'+CF.unixToDate(D[i].updated_at,"hhmm")+'</span></div><div class="management-matche-detail-menu-course-teams"><div class="team1"><img src='+D[i].club_l.upfile+'><span>'+D[i].club_l.name+'</span></div><div class="team2"><img src='+D[i].club_r.upfile+'><span>'+D[i].club_r.name+'</span></div></div></li>';
+					$(".management-matche-detail-menu-course").append(htm);
+				}
+			};
+			getData();
+		};
+
+		// 获取排名前三队伍
+		var initDistributionPoints=function(){
+			var id = 1;		
+			function getData(){
+				CF.showLoading(1);
+				CF.get(_ApiRoot_+"matches/result",{"id":id},function(result){
+			        console.log(JSON.stringify(result));
+			        if(result.code==200){
+			        	if(result.data){
+			        		fillData(result.data);
+			        	}
+			        }
+			    });
+			};		
+			function fillData(D){
+				for (var i = 0; i < D.length; i++) {
+					var htm = "<div class='management-matche-detail-ranking-teams'><img src="+D[i].upfile+"><span>"+D[i].name+"<span></div>";
+					$(".management-matche-detail-ranking").eq(i).append(htm);
+				}
+			};
+			getData();
+		};
+
+		$(function(){
+			initManagementMatcheDetail();
+			initDistributionPoints();
+		});
+	</script>
+</html>

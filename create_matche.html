@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta content="text/html; charset=utf-8">
+		<meta charset="utf-8">
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="format-detection" content="telephone=no"/>
+		<title>创建比赛</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" />
+		<link href="css/ck_operating_pages.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+	</head>
+	<body>
+		<section class="create-matche-menu">
+			<ul>
+				<li class="create-matche-menu-row">
+					<div class="create-matche-menu-row-title">赛事游戏</div>
+					<div class="create-matche-menu-row-value">
+						<div></div>
+						<span>英雄联盟</span>
+					</div>
+				</li>
+			</ul>
+			<ul>
+				<li class="create-matche-menu-row">
+					<div class="create-matche-menu-row-title">赛事类型</div>
+					<div class="create-matche-menu-row-value">
+						<div></div>
+						<span>淘汰赛</span>
+					</div>
+				</li>
+			</ul>
+			<ul>
+				<li class="create-matche-menu-title">报名截止时间:（时间精确到分钟）</li>
+				<li class="create-matche-menu-value">
+					<input type="datetime-local" id="deadlineTime"></input>
+				</li>
+			</ul>
+			<ul>
+				<li class="create-matche-menu-title">比赛时间:（时间精确到分钟）</li>
+				<li class="create-matche-menu-value">
+					<input type="datetime-local" id="startTime"></input>
+				</li>
+			</ul>
+			<ul>
+				<li class="create-matche-menu-title">比赛队伍数</li>
+				<li class="create-matche-menu-value">
+					<input type="text" id="teamNum"></input>
+				</li>
+			</ul>
+			<ul>
+				<li class="create-matche-menu-title">赛事标题</li>
+				<li class="create-matche-menu-value">
+					<textarea id="matche-title">网吧高级战队赛事</textarea>
+				</li>
+			</ul>
+			<ul>
+				<li class="create-matche-menu-title">奖项</li>
+				<li class="create-matche-menu-value"><textarea id="match-award">第一名: 黄金万两 第二名: 皮肤10套 第三名: 可乐一箱</textarea></li>
+			</ul>
+			<ul>
+				<li class="create-matche-menu-title">赛事介绍</li>
+				<li class="create-matche-menu-value">
+					<textarea class="create-matche-textarea" id="matche-content">1、如果你是六盘水地区高手，可录用为核心队员，代表战队参加各类正式比赛；提供福利：免费训练场地；全套装备；&#13;&#10;2、如果你是六盘水地区普通玩家，不论实力如何均欢迎加入，有专业老队员带队训练，每周举办队内赛提供丰富奖品，助你迅速成长。
+					</textarea>
+				</li>
+			</ul>
+
+			<div class="create-matche-submit">
+				<input id="btn-submit" type="button" value="创建">
+			</div>
+		</section>
+		
+	</body>
+	<script type="text/javascript">
+	var initCreateMatch=function(){
+		$("#btn-submit").click(function(){
+			var matchesType=["","淘汰赛","积分赛","擂台赛","预选赛"];
+			var type=1;
+			var iswar=1;
+			var game_id=1;
+			var number=$("#teamNum").val();
+			var title=$("#matche-title").val();
+			var deadline_time = new Date($("#deadlineTime").val()).getTime()/1000-28800;
+			var start_time = new Date($("#startTime").val()).getTime()/1000-28800;
+			var award=$("#match-award").val();
+			var content=$("#matche-content").val();
+			var ak = CF.localData("51laizhan_auth_key");
+			if(!number){CF.showTips("请输入比赛人数!");return false;};
+			if(!title){CF.showTips("请输入赛事标题!");return false;};
+			if(!start_time){CF.showTips("请输比赛时间!");return false;};
+			if(!award){CF.showTips("请输入赛事奖项!");return false;};
+			if(!content){CF.showTips("请输赛事介绍!");return false;};
+
+			var pdata={"type":type,"iswar":iswar,"game_id":1,"number":number,"title":title,"deadline_time":deadline_time,"start_time":start_time,"award":award,"content":content}
+
+			CF.call(_ApiRoot_+"matches?auth_key="+ak,pdata,function(result){
+				console.log(result);
+				if (result.code==200) {
+					CF.showTips("创建建比赛成功!");
+					history.back();
+				}
+			});	
+		})
+	};
+
+	$(function(){
+		initCreateMatch();
+	});
+	</script>
+</html>
